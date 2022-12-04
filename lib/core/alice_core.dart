@@ -91,14 +91,14 @@ class AliceCore {
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     final initializationSettingsAndroid =
         AndroidInitializationSettings(notificationIcon);
-    const initializationSettingsIOS = IOSInitializationSettings();
+    const initializationSettingsIOS = DarwinInitializationSettings();
     final initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
     _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onSelectNotification: _onSelectedNotification,
+      onDidReceiveNotificationResponse: _onSelectedNotification,
     );
   }
 
@@ -113,8 +113,7 @@ class AliceCore {
     }
   }
 
-  Future<void> _onSelectedNotification(String? payload) async {
-    assert(payload != null, "payload can't be null");
+  Future<void> _onSelectedNotification(NotificationResponse details) async {
     navigateToCallListScreen();
     return;
   }
@@ -219,7 +218,7 @@ class AliceCore {
       largeIcon: DrawableResourceAndroidBitmap(notificationIcon),
     );
     const iOSPlatformChannelSpecifics =
-        IOSNotificationDetails(presentSound: false);
+        DarwinNotificationDetails(presentSound: false);
     final platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics,
