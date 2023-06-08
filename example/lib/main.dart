@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:alice/alice.dart';
 import 'package:alice/core/alice_http_client_extensions.dart';
 import 'package:alice/core/alice_http_extensions.dart';
-import 'package:alice_example/posts_service.dart';
 import 'package:chopper/chopper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
