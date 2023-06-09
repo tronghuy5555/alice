@@ -43,8 +43,8 @@ class AliceChopperInterceptor extends chopper.ResponseInterceptor
       final AliceHttpCall call = AliceHttpCall(getRequestHashCode(baseRequest));
       String endpoint = "";
       String server = "";
-      if (request.baseUrl.isEmpty) {
-        final List<String> split = request.url.split("/");
+      if (request.baseUri.toString().isEmpty) {
+        final List<String> split = request.url.toString().split("/");
         if (split.length > 2) {
           server = split[1] + split[2];
         }
@@ -57,15 +57,16 @@ class AliceChopperInterceptor extends chopper.ResponseInterceptor
           endpoint = endpoint.substring(0, endpoint.length - 1);
         }
       } else {
-        endpoint = request.url;
-        server = request.baseUrl;
+        endpoint = request.url.toString();
+        server = request.baseUri.toString();
       }
 
       call.method = request.method;
       call.endpoint = endpoint;
       call.server = server;
       call.client = "Chopper";
-      if (request.baseUrl.contains("https") || request.url.contains("https")) {
+      if (request.baseUri.toString().contains("https") ||
+          request.url.toString().contains("https")) {
         call.secure = true;
       }
 
