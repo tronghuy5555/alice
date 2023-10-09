@@ -1,3 +1,6 @@
+# 0.3.4
+* Added refresh feature (No support for form data)
+* Generate curl Postman style (Must edit form files path before run it)
 # 0.2.5
 * Added showShareButton in Alice constructor.
 * Added support for Android 12 (by Igor Kurek https://github.com/ikurek )
